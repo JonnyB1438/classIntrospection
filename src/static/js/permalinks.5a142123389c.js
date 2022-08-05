@@ -1,0 +1,1 @@
+(function(doc){"use strict";$(function(event){var hash=window.location.hash;var headerHeight=$('.navbar').height();if(hash){var $hdr=$(hash).parent('.accordion-group');$hdr.prop('open',true);var methodTop=$hdr.offset().top-headerHeight-8;$('html, body').animate({scrollTop:methodTop},250);}});})(document);

@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block title %}Intorspection{% if parents %} - {{ parents.0.name }}{% endif %}}{% endblock title %}
+
+{% load pygmy %}
+
+{% block content %}
+    <article id="main">
+        <h1><small>class</small> {{ parents.0.name }}</h1>
+        <pre>from {{ import }} import {{ parents.0.name }}</pre>
+        <pre class="docstring">{{ docstring }}</pre>
+        <div class="row">
+            <div class="span12">
+                <div class="row">
+                    <div class="span4">
+                        <h2>Ancestors (<abbr title="Method Resolution Order">MRO</abbr>)</h2>
+                        <ol start="0" id="ancestors">
+                            <li><strong>{{ parents.0.name }}</strong></li>
+                            {% for class in parents|slice:"1:" %}
+                            <li>
+                                <a href="{% url 'class' class.name %}"
+                                    class="{% if class.main_parent %}direct{% endif %}">
+                                {{ class.name }}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ol>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span12">
+                        <h2>Attributes</h2>
+                        <table class="table table-striped table-bordered table-condensed">
+                            <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th>Defined in</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for field in fields|dictsort:"name" %}
+                            <tr>
+                                <td>
+                                    <code class="attribute">
+                                        {% if field.redefined %}
+                                            <strike>{{ field.name }} = {{ field.value|safe }}</strike>
+                                        {% else %}
+                                        {{ field.name }} = {{ field.value }}
+                                        {% endif %}
+                                    </code>
+                                </td>
+                                <td>
+                                    {% if field.owner.name == parents.0.name %}
+                                        {{ field.owner.name }}
+                                    {% else %}
+                                        <a href="{% url 'class' field.owner.name %}">{{ field.owner.name }}</a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="method-list" class="span12 accordion">
+                        <div id="method-buttons">
+                            <span class="btn btn-small" id="expand-methods-btn">Expand</span>
+                            <span class="btn btn-small" id="collapse-methods-btn">Collapse</span>
+                        </div>
+                        <h2>Methods</h2>
+                        {% for method in methods|dictsort:"name" %}
+                        <details class="method accordion-group">
+                            <summary class="accordion-heading btn">
+                                <h3>
+                                    <code class="signature highlight">
+                                        <span class="k">def</span>
+                                        <span class="nf">{{ method.name }}</span>(<span class="n">{{ method.signature|slice:"1:-1" }}</span>):
+                                    </code>
+                                    {% if method.code|length_is:"1" %}
+                                        <small class="pull-right">{{ method.owner.name }}</small>
+                                    {% endif %}
+                                    <a class="permalink" href="/#{{ method.name }}">¶</a>
+                                </h3>
+                            </summary>
+                            <div id="{{ method.name }}" class="accordion-body">
+                                {% for data in method.code %}
+                                    {% if method.code|length > 1 %}
+                                    <details class="namesake accordion-group">
+                                        <summary class="accordion-heading">
+                                            <h4 class="accordion-toggle">{{ data.owner }}</h4>
+                                        </summary>
+                                        <div id="get_context_data-{{ data.owner }}" class="accordion-body">
+                                            <div class="accordion-inner">
+                                    {% endif %}
+                                                {% if method.docstring %}
+                                                    <pre class="docstring">{{ method.docstring }}</pre>
+                                                {% endif %}
+                                                {% pygmy data.code linenos='True' linenostart=data.lnum lexer='python' %}
+                                    {% if method.code|length > 1 %}
+                                            </div>
+                                        </div>
+                                    </details>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </details>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+{% endblock content %}

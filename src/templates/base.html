@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en"
+      class=" js no-flexbox canvas canvastext webgl no-touch geolocation postmessage
+       websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs
+       backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns
+       cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent
+       video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>{% block title %}{% endblock title %}</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="{% static 'css/bootstrap.5fbf7522f237.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-responsive.f9dee47322d8.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.58b03b2054ee.css' %}" rel="stylesheet">
+    <link href="{% static 'css/manni.59a8b2db886d.css' %}" rel="stylesheet">
+    <!--<link rel="canonical" href="http://ccbv.co.uk/projects/Django/4.0/django.views.generic.edit/DeleteView/">-->
+</head>
+<body>
+
+{% include 'include/menu.html' %}
+
+<div class="container">
+{% block content %}{% endblock content %}
+
+{% include 'include/footer.html' %}
+</div>
+
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script>window.jQuery || document.write('<script src="/static/jquery-1.7.1.min.ddb84c158728.js"><\/script>');</script>
+<script src="{% static 'js/modernizr-2.5.3.min.0f9fe98fcfda.js' %}"></script>
+­
+<style>
+    @font-face {font-family:"font";src:url("https://")}@media (touch-enabled),(-webkit-touch-enabled),(-moz-touch-enabled),(-o-touch-enabled),(-ms-touch-enabled),(modernizr){#touch{top:9px;position:absolute}}@media (transform-3d),(-webkit-transform-3d),(-moz-transform-3d),(-o-transform-3d),(-ms-transform-3d),(modernizr){#csstransforms3d{left:9px;position:absolute;height:3px;}}#generatedcontent:after{content:":)";visibility:hidden}
+</style>
+<script src="{% static 'js/bootstrap-dropdowns.09dbe8df198f.js' %}"></script>
+<script>$('.dropdown-toggle').dropdown()</script>
+<script type="text/javascript">$('.dropdown-toggle').dropdown()</script>
+<script>
+        // Activate accordion
+        $(function () {
+            // Method collapsing/expanding buttons
+            $("#collapse-methods-btn").click(function() {
+                CCBV.method_list.collapse();
+            });
+            $("#expand-methods-btn").click(function() {
+                CCBV.method_list.expand();
+            });
+        })
+
+</script>
+<script src="{% static 'js/ccbv.556f6e68fbfa.js' %}"></script>
+<script src="{% static 'js/permalinks.5a142123389c.js' %}"></script>
+
+
+<div at-magnifier-wrapper="">
+    <div class="at-theme-light">
+        <div class="at-base notranslate" translate="no">
+            <div class="Z1-AJ" style="top: 0px; left: 0px;"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
