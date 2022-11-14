@@ -7,6 +7,8 @@ from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeDoneV
 from django.forms.forms import BaseForm, DeclarativeFieldsMetaclass, Form
 from django.forms.models import BaseInlineFormSet, BaseModelForm, BaseModelFormSet, InlineForeignKeyField, ModelChoiceField, ModelChoiceIterator, ModelChoiceIteratorValue, ModelForm, ModelFormMetaclass, ModelFormOptions, ModelMultipleChoiceField
 from rest_framework.views import APIView
+from rest_framework.viewsets import GenericViewSet, ModelViewSet, ReadOnlyModelViewSet, ViewSet, ViewSetMixin
+from rest_framework.fields import BooleanField, BuiltinSignatureError, CharField, ChoiceField, CreateOnlyDefault, CurrentUserDefault, DateField, DateTimeField, DecimalField, DictField, DurationField, EmailField, Field, FileField, FilePathField, FloatField, HStoreField, HiddenField, IPAddressField, ImageField, IntegerField, JSONField, ListField, ModelField, MultipleChoiceField, NullBooleanField, ReadOnlyField, RegexField, SerializerMethodField, SkipField, SlugField, TimeField, URLField, UUIDField, _UnvalidatedField, empty
 from rest_framework.generics import CreateAPIView, DestroyAPIView, GenericAPIView, ListAPIView, ListCreateAPIView, RetrieveAPIView, RetrieveDestroyAPIView, RetrieveUpdateAPIView, RetrieveUpdateDestroyAPIView, UpdateAPIView
 from rest_framework.serializers import BaseSerializer, HyperlinkedModelSerializer, ListSerializer, ModelSerializer, Serializer, SerializerMetaclass
 from rest_framework.mixins import CreateModelMixin, DestroyModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin
@@ -85,6 +87,47 @@ classes_dict = {
 	'ModelFormOptions': ModelFormOptions,
 	'ModelMultipleChoiceField': ModelMultipleChoiceField,
 	'APIView': APIView,
+	'GenericViewSet': GenericViewSet,
+	'ModelViewSet': ModelViewSet,
+	'ReadOnlyModelViewSet': ReadOnlyModelViewSet,
+	'ViewSet': ViewSet,
+	'ViewSetMixin': ViewSetMixin,
+	'BooleanField': BooleanField,
+	'BuiltinSignatureError': BuiltinSignatureError,
+	'CharField': CharField,
+	'ChoiceField': ChoiceField,
+	'CreateOnlyDefault': CreateOnlyDefault,
+	'CurrentUserDefault': CurrentUserDefault,
+	'DateField': DateField,
+	'DateTimeField': DateTimeField,
+	'DecimalField': DecimalField,
+	'DictField': DictField,
+	'DurationField': DurationField,
+	'EmailField': EmailField,
+	'Field': Field,
+	'FileField': FileField,
+	'FilePathField': FilePathField,
+	'FloatField': FloatField,
+	'HStoreField': HStoreField,
+	'HiddenField': HiddenField,
+	'IPAddressField': IPAddressField,
+	'ImageField': ImageField,
+	'IntegerField': IntegerField,
+	'JSONField': JSONField,
+	'ListField': ListField,
+	'ModelField': ModelField,
+	'MultipleChoiceField': MultipleChoiceField,
+	'NullBooleanField': NullBooleanField,
+	'ReadOnlyField': ReadOnlyField,
+	'RegexField': RegexField,
+	'SerializerMethodField': SerializerMethodField,
+	'SkipField': SkipField,
+	'SlugField': SlugField,
+	'TimeField': TimeField,
+	'URLField': URLField,
+	'UUIDField': UUIDField,
+	'_UnvalidatedField': _UnvalidatedField,
+	'empty': empty,
 	'CreateAPIView': CreateAPIView,
 	'DestroyAPIView': DestroyAPIView,
 	'GenericAPIView': GenericAPIView,
@@ -120,4 +163,4 @@ classes_dict = {
 	'TokenAuthentication': TokenAuthentication,
 	}
 
-menu_dict = {'Django': {'Views generic base': ['ContextMixin', 'RedirectView', 'TemplateResponseMixin', 'TemplateView', 'View'], 'Views generic list': ['BaseListView', 'ListView', 'MultipleObjectMixin', 'MultipleObjectTemplateResponseMixin'], 'Views generic detail': ['BaseDetailView', 'DetailView', 'SingleObjectMixin', 'SingleObjectTemplateResponseMixin'], 'Views generic edit': ['BaseCreateView', 'BaseDeleteView', 'BaseFormView', 'BaseUpdateView', 'CreateView', 'DeleteView', 'DeletionMixin', 'FormMixin', 'FormView', 'ModelFormMixin', 'ProcessFormView', 'UpdateView'], 'Views generic dates': ['ArchiveIndexView', 'BaseArchiveIndexView', 'BaseDateDetailView', 'BaseDateListView', 'BaseDayArchiveView', 'BaseMonthArchiveView', 'BaseTodayArchiveView', 'BaseWeekArchiveView', 'BaseYearArchiveView', 'DateDetailView', 'DateMixin', 'DayArchiveView', 'DayMixin', 'MonthArchiveView', 'MonthMixin', 'TodayArchiveView', 'WeekArchiveView', 'WeekMixin', 'YearArchiveView', 'YearMixin'], 'Contrib auth views': ['LoginView', 'LogoutView', 'PasswordChangeDoneView', 'PasswordChangeView', 'PasswordContextMixin', 'PasswordResetCompleteView', 'PasswordResetConfirmView', 'PasswordResetDoneView', 'PasswordResetView', 'SuccessURLAllowedHostsMixin'], 'Forms forms': ['BaseForm', 'DeclarativeFieldsMetaclass', 'Form'], 'Forms models': ['BaseInlineFormSet', 'BaseModelForm', 'BaseModelFormSet', 'InlineForeignKeyField', 'ModelChoiceField', 'ModelChoiceIterator', 'ModelChoiceIteratorValue', 'ModelForm', 'ModelFormMetaclass', 'ModelFormOptions', 'ModelMultipleChoiceField']}, 'Rest framework': {'Views': ['APIView'], 'Generics': ['CreateAPIView', 'DestroyAPIView', 'GenericAPIView', 'ListAPIView', 'ListCreateAPIView', 'RetrieveAPIView', 'RetrieveDestroyAPIView', 'RetrieveUpdateAPIView', 'RetrieveUpdateDestroyAPIView', 'UpdateAPIView'], 'Serializers': ['BaseSerializer', 'HyperlinkedModelSerializer', 'ListSerializer', 'ModelSerializer', 'Serializer', 'SerializerMetaclass'], 'Mixins': ['CreateModelMixin', 'DestroyModelMixin', 'ListModelMixin', 'RetrieveModelMixin', 'UpdateModelMixin'], 'Parsers': ['BaseParser', 'DataAndFiles', 'FileUploadParser', 'FormParser', 'JSONParser', 'MultiPartParser'], 'Authentication': ['BaseAuthentication', 'BasicAuthentication', 'CSRFCheck', 'RemoteUserAuthentication', 'SessionAuthentication', 'TokenAuthentication']}}
+menu_dict = {'Django': {'Views generic base': ['ContextMixin', 'RedirectView', 'TemplateResponseMixin', 'TemplateView', 'View'], 'Views generic list': ['BaseListView', 'ListView', 'MultipleObjectMixin', 'MultipleObjectTemplateResponseMixin'], 'Views generic detail': ['BaseDetailView', 'DetailView', 'SingleObjectMixin', 'SingleObjectTemplateResponseMixin'], 'Views generic edit': ['BaseCreateView', 'BaseDeleteView', 'BaseFormView', 'BaseUpdateView', 'CreateView', 'DeleteView', 'DeletionMixin', 'FormMixin', 'FormView', 'ModelFormMixin', 'ProcessFormView', 'UpdateView'], 'Views generic dates': ['ArchiveIndexView', 'BaseArchiveIndexView', 'BaseDateDetailView', 'BaseDateListView', 'BaseDayArchiveView', 'BaseMonthArchiveView', 'BaseTodayArchiveView', 'BaseWeekArchiveView', 'BaseYearArchiveView', 'DateDetailView', 'DateMixin', 'DayArchiveView', 'DayMixin', 'MonthArchiveView', 'MonthMixin', 'TodayArchiveView', 'WeekArchiveView', 'WeekMixin', 'YearArchiveView', 'YearMixin'], 'Contrib auth views': ['LoginView', 'LogoutView', 'PasswordChangeDoneView', 'PasswordChangeView', 'PasswordContextMixin', 'PasswordResetCompleteView', 'PasswordResetConfirmView', 'PasswordResetDoneView', 'PasswordResetView', 'SuccessURLAllowedHostsMixin'], 'Forms forms': ['BaseForm', 'DeclarativeFieldsMetaclass', 'Form'], 'Forms models': ['BaseInlineFormSet', 'BaseModelForm', 'BaseModelFormSet', 'InlineForeignKeyField', 'ModelChoiceField', 'ModelChoiceIterator', 'ModelChoiceIteratorValue', 'ModelForm', 'ModelFormMetaclass', 'ModelFormOptions', 'ModelMultipleChoiceField']}, 'Rest framework': {'Views': ['APIView'], 'Viewsets': ['GenericViewSet', 'ModelViewSet', 'ReadOnlyModelViewSet', 'ViewSet', 'ViewSetMixin'], 'Fields': ['BooleanField', 'BuiltinSignatureError', 'CharField', 'ChoiceField', 'CreateOnlyDefault', 'CurrentUserDefault', 'DateField', 'DateTimeField', 'DecimalField', 'DictField', 'DurationField', 'EmailField', 'Field', 'FileField', 'FilePathField', 'FloatField', 'HStoreField', 'HiddenField', 'IPAddressField', 'ImageField', 'IntegerField', 'JSONField', 'ListField', 'ModelField', 'MultipleChoiceField', 'NullBooleanField', 'ReadOnlyField', 'RegexField', 'SerializerMethodField', 'SkipField', 'SlugField', 'TimeField', 'URLField', 'UUIDField', '_UnvalidatedField', 'empty'], 'Generics': ['CreateAPIView', 'DestroyAPIView', 'GenericAPIView', 'ListAPIView', 'ListCreateAPIView', 'RetrieveAPIView', 'RetrieveDestroyAPIView', 'RetrieveUpdateAPIView', 'RetrieveUpdateDestroyAPIView', 'UpdateAPIView'], 'Serializers': ['BaseSerializer', 'HyperlinkedModelSerializer', 'ListSerializer', 'ModelSerializer', 'Serializer', 'SerializerMetaclass'], 'Mixins': ['CreateModelMixin', 'DestroyModelMixin', 'ListModelMixin', 'RetrieveModelMixin', 'UpdateModelMixin'], 'Parsers': ['BaseParser', 'DataAndFiles', 'FileUploadParser', 'FormParser', 'JSONParser', 'MultiPartParser'], 'Authentication': ['BaseAuthentication', 'BasicAuthentication', 'CSRFCheck', 'RemoteUserAuthentication', 'SessionAuthentication', 'TokenAuthentication']}}
